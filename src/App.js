@@ -1,19 +1,25 @@
-import { useEffect } from "react";
-import { Container } from "@mui/material";
-import axios from "axios";
-
+import { useState, useEffect } from 'react';
+import { Container } from '@mui/material';
+import axios from 'axios';
+import Gallery from './componenta/Gallery';
 
 function App() {
+  const [images, setImages] = useState([]);
+
   const getData = async () => {
-    const res = await axios.get(`https://api.unsplash.com/photos/random/?client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}`);
+    const res = await axios.get(
+      `https://api.unsplash.com/search/photos?page=1&query=fox&client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}&per_page=25`
+    );
     const dataRes = await res.data;
-    console.log(dataRes);
-  }
+    setImages(dataRes.results);
+  };
 
   useEffect(() => getData());
 
   return (
-    <Container>Something</Container>
+    <Container>
+      <Gallery images={images}/>
+    </Container>
   );
 }
 
