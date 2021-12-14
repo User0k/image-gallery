@@ -3,7 +3,7 @@ import { ImageList, ImageListItem } from '@mui/material';
 
 function Gallery({ images }) {
   return (
-    <ImageList cols={3}>
+    <ImageList variant="masonry" cols={3} gap={18}>
       {images.map(image => (
         <ImageListItem key={image.id}>
           <img
