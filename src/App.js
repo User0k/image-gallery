@@ -8,7 +8,7 @@ function App() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [isFetching, setIsFetching] = useState(true);
-  const url = `https://api.unsplash.com/search/photos?page=${page}&query=fox&client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}&per_page=20`;
+  const url = `https://api.unsplash.com/search/photos?page=${page}&query=fox&client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}&per_page=10`;
 
   const getTotalPages = () => {
     axios.get(url)
@@ -34,7 +34,7 @@ function App() {
 
   function handleScroll(e) {
     const {scrollHeight, scrollTop, clientHeight} = e.target.scrollingElement;
-    const isBottom = scrollHeight - scrollTop <= clientHeight + 900;
+    const isBottom = scrollHeight - scrollTop <= clientHeight + 1300;
     if (isBottom && page <= totalPages) {
       setIsFetching(true);
     }
