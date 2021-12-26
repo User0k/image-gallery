@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Container } from '@mui/material';
 import axios from 'axios';
 import Gallery from './componenta/Gallery';
+import Loading from './componenta/Loading';
 
 function App() {
   const [images, setImages] = useState([]);
@@ -48,6 +49,9 @@ function App() {
   return (
     <Container>
       <Gallery images={images}/>
+      <div>
+        {isFetching && <Loading />}
+      </div>
     </Container>
   );
 }
