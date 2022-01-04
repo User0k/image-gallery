@@ -1,9 +1,20 @@
 import React from 'react';
-import { ImageList, ImageListItem } from '@mui/material';
+import Masonry from 'react-masonry-css';
+import { ImageListItem } from '@mui/material';
 
 function Gallery({ images }) {
+  const breakpoints = {
+    default: 3,
+    1100: 2,
+    750: 1
+  }
+
   return (
-    <ImageList variant="masonry" cols={3} gap={18}>
+    <Masonry
+      breakpointCols={breakpoints}
+      className="masonry-grid"
+      columnClassName="masonry-grid_column"
+    >
       {images.map(image => (
         <ImageListItem key={image.id}>
           <img
@@ -14,7 +25,7 @@ function Gallery({ images }) {
           />
         </ImageListItem>
       ))}
-    </ImageList>
+    </Masonry>
   )
 }
 
