@@ -1,6 +1,7 @@
 import React from 'react';
 import Masonry from 'react-masonry-css';
-import { ImageListItem, ImageListItemBar, IconButton, Avatar } from '@mui/material';
+import ImageListItem from '@mui/material/ImageListItem';
+import ImageBar from './ImageBar';
 
 function Gallery({ images }) {
   const breakpoints = {
@@ -23,29 +24,7 @@ function Gallery({ images }) {
             alt={image.alt_description}
             loading="lazy"
           />
-          <ImageListItemBar
-              sx={{
-                background:
-                  'linear-gradient(to top, rgba(0,0,0,0.7) 0%, ' +
-                  'rgba(0,0,0,0.2) 70%, rgba(0,0,0,0) 100%)',
-              }}
-              title={image.user.username}
-              subtitle={image.description ?? 'Unnamed picture'}
-              actionIcon={
-                <IconButton
-                  size="large"
-                  href={`${image.user.links.html}`}
-                  target="_blank"
-                  >
-                  <Avatar
-                    alt={`${image.user.username}`}
-                    src={`${image.user.profile_image.small}`}
-                    sx={{ width: 30, height: 30 }}
-                  />
-                </IconButton>
-              }
-              actionPosition="left"
-            />
+          <ImageBar image={image}/>
         </ImageListItem>
       ))}
     </Masonry>
