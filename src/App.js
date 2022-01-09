@@ -3,6 +3,7 @@ import Container from '@mui/material/Container';
 import axios from 'axios';
 import Gallery from './componenta/Gallery';
 import Loading from './componenta/Loading';
+import SearchBar from './componenta/SearchBar';
 
 function App() {
   const [images, setImages] = useState([]);
@@ -47,12 +48,15 @@ function App() {
   }, []);
 
   return (
-    <Container>
-      <Gallery images={images}/>
-      <div>
-        {isFetching && <Loading />}
-      </div>
-    </Container>
+    <>
+      <SearchBar />
+      <Container>
+        <Gallery images={images}/>
+        <div>
+          {isFetching && <Loading />}
+        </div>
+      </Container>
+    </>
   );
 }
 

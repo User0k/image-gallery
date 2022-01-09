@@ -13,6 +13,7 @@ body {
 .masonry-grid {
   display: flex;
   width: auto;
+  margin-top: 80px;
 }
 
 .masonry-grid_column {
