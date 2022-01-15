@@ -3,7 +3,7 @@ import Container from '@mui/material/Container';
 import axios from 'axios';
 import Gallery from './componenta/Gallery';
 import Loading from './componenta/Loading';
-import SearchBar from './componenta/SearchBar';
+import SearchBar from './componenta/SearchBar/';
 
 function App() {
   const [images, setImages] = useState([]);
