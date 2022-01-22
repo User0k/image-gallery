@@ -10,7 +10,7 @@ import Search from './Search';
 import SearchIconWrapper from './SearchIconWrapper';
 import StyledInputBase from './StyledInputBase';
 
-export default function SearchBar() {
+export default function SearchBar({ handleInput, handleSubmit }) {
   return (
     <AppBar sx={{ backgroundColor: 'black' }}>
       <Toolbar>
@@ -18,11 +18,12 @@ export default function SearchBar() {
             sx={{ display: { md: 'inline-block', sm: 'none', xs: 'none' }, mr: 3.3, color: 'white' }}
             fontSize="large"
           />
-        <Search>
+        <Search onSubmit={handleSubmit}>
           <SearchIconWrapper>
             <SearchIcon />
           </SearchIconWrapper>
           <StyledInputBase
+            onChange={handleInput}
             placeholder="Search images"
             inputProps={{ 'aria-label': 'search images' }}
           />

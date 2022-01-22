@@ -9,8 +9,10 @@ function App() {
   const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [query, setQuery] = useState('fox');
+  const [hitSubmit, setHitSubmit] = useState(false);
   const [isFetching, setIsFetching] = useState(true);
-  const url = `https://api.unsplash.com/search/photos?page=${page}&query=fox&client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}&per_page=10`;
+  const url = `https://api.unsplash.com/search/photos?page=${page}&query=${query}&client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}&per_page=10`;
 
   const getTotalPages = () => {
     axios.get(url)
@@ -29,10 +31,22 @@ function App() {
           setPage(curPage => curPage + 1);
         })
         .finally(() => setIsFetching(false));
+    } else if (hitSubmit){
+        setHitSubmit(false);
+        axios.get(url)
+          .then(res => setImages(res.data.results));
     }
   };
 
-  useEffect(() => getData(), [isFetching]);
+  useEffect(() => getData(), [isFetching, hitSubmit]);
+
+  const handleInput = (e) => setQuery(e.target.value);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setPage(1);
+    setHitSubmit(true);
+  }
 
   function handleScroll(e) {
     const {scrollHeight, scrollTop, clientHeight} = e.target.scrollingElement;
@@ -49,7 +63,7 @@ function App() {
 
   return (
     <>
-      <SearchBar />
+      <SearchBar handleInput={handleInput} handleSubmit={handleSubmit}/>
       <Container>
         <Gallery images={images}/>
         <div>
