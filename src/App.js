@@ -21,7 +21,7 @@ function App() {
       });
   };
 
-  useEffect(() => getTotalPages(), []);
+  useEffect(() => getTotalPages(), [hitSubmit]);
 
   const getData = () => {
     if (isFetching && page <= totalPages) {
