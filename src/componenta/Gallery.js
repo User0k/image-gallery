@@ -2,6 +2,7 @@ import React from 'react';
 import Masonry from 'react-masonry-css';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageBar from './ImageBar';
+import LikeButton from './LikeButton';
 
 function Gallery({ images }) {
   const breakpoints = {
@@ -24,6 +25,7 @@ function Gallery({ images }) {
             alt={image.alt_description}
             loading="lazy"
           />
+          <LikeButton id={image.id}/>
           <ImageBar image={image}/>
         </ImageListItem>
       ))}
