@@ -18,9 +18,10 @@ function LikeButton({ id }) {
 
   return (
     <Checkbox
+      className='likeButton'
       icon={<FavoriteBorder/>}
       checkedIcon={<Favorite/>}
-      sx={{ position: "absolute", top: 0, left: 0, color: "lightgrey" }}
+      sx={{ display: 'none', position: "absolute", top: 3, left: 3, color: "lightgrey" }}
       color='error'
       checked={Boolean(liked)}
       onChange={toggleLike}

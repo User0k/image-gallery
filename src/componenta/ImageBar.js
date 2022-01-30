@@ -7,6 +7,7 @@ function ImageBar({ image: {description, user} }) {
   return (
     <ImageListItemBar
       sx={{
+        display: 'none',
         background:
           'linear-gradient(to top, rgba(0,0,0,0.7) 0%, ' +
           'rgba(0,0,0,0.2) 70%, rgba(0,0,0,0) 100%)',
@@ -18,7 +19,7 @@ function ImageBar({ image: {description, user} }) {
           size="large"
           href={`${user.links.html}`}
           target="_blank"
-          >
+        >
           <Avatar
             alt={`${user.username}`}
             src={`${user.profile_image.small}`}

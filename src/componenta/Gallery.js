@@ -18,7 +18,7 @@ function Gallery({ images }) {
       columnClassName="masonry-grid_column"
     >
       {images.map(image => (
-        <ImageListItem key={image.id}>
+        <ImageListItem key={image.id} sx={{':hover': {'& .MuiImageListItemBar-root, & .likeButton': {display: 'flex'}}}}>
           <img
             src={image.urls.regular}
             srcSet={image.urls.regular}
