@@ -10,12 +10,6 @@ body {
   margin-bottom: 18px;
 }
 
-.masonry-grid {
-  display: flex;
-  width: auto;
-  margin-top: 80px;
-}
-
 .masonry-grid_column {
   padding: 0 9px;
   background-clip: padding-box;
