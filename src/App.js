@@ -4,6 +4,7 @@ import axios from 'axios';
 import Gallery from './componenta/Gallery';
 import Loading from './componenta/Loading';
 import SearchBar from './componenta/SearchBar/';
+import NothingFound from './componenta/NothingFound';
 
 function App() {
   const [images, setImages] = useState([]);
@@ -66,6 +67,7 @@ function App() {
       <SearchBar handleInput={handleInput} handleSubmit={handleSubmit}/>
       <Container>
         <Gallery images={images}/>
+        {images.length === 0 && !isFetching && <NothingFound />}
         <div>
           {isFetching && <Loading />}
         </div>
