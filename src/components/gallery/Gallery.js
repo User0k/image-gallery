@@ -2,7 +2,7 @@ import Masonry from 'react-masonry-css';
 import { styled } from '@mui/material/styles';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageBar from './ImageBar';
-import LikeButton from './LikeButton';
+import LikeButton from '../buttons/LikeButton';
 
 const MasonryGrid = styled(Masonry)(({ theme }) => ({
   display: 'flex',
@@ -11,11 +11,6 @@ const MasonryGrid = styled(Masonry)(({ theme }) => ({
   [theme.breakpoints.down('sm')]: {
     marginTop: '72px',
   },
-}));
-
-const MasonryGrid2 = styled(Masonry)(({ theme }) => ({
-  padding: '0 9px',
-  backgroundClip: 'padding-box',
 }));
 
 export default function Gallery({ images }) {

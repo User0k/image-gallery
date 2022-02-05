@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import Container from '@mui/material/Container';
 import axios from 'axios';
-import Gallery from './componenta/Gallery';
-import Loading from './componenta/Loading';
-import SearchBar from './componenta/SearchBar/';
-import NothingFound from './componenta/NothingFound';
+import Gallery from './components/gallery';
+import Loading from './components/Loading';
+import SearchBar from './components/search-bar';
+import NothingFound from './components/NothingFound';
 
 function App() {
   const [images, setImages] = useState([]);

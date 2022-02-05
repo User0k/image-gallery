@@ -1,7 +1,5 @@
-import React from 'react';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
-import IconButton from '@mui/material/IconButton';
-import Avatar from '@mui/material/Avatar';
+import AuthorsAvatar from '../buttons/AuthorsAvatar';
 
 function ImageBar({ image: {description, user} }) {
   return (
@@ -14,19 +12,7 @@ function ImageBar({ image: {description, user} }) {
       }}
       title={user.username}
       subtitle={description ?? 'Unnamed picture'}
-      actionIcon={
-        <IconButton
-          size="large"
-          href={`${user.links.html}`}
-          target="_blank"
-        >
-          <Avatar
-            alt={`${user.username}`}
-            src={`${user.profile_image.small}`}
-            sx={{ width: 30, height: 30 }}
-          />
-        </IconButton>
-      }
+      actionIcon={<AuthorsAvatar user={user} />}
       actionPosition="left"
     />
   )
