@@ -21,7 +21,7 @@ function LikeButton({ id }) {
       className='likeButton'
       icon={<FavoriteBorder/>}
       checkedIcon={<Favorite/>}
-      sx={{ display: 'none', position: "absolute", top: 3, left: 3, color: "lightgrey" }}
+      sx={{ color: "lightgrey" }}
       color='error'
       checked={Boolean(liked)}
       onChange={toggleLike}
