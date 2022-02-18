@@ -3,7 +3,7 @@ import IconButton from '@mui/material/IconButton';
 import FitScreenIcon from '@mui/icons-material/FitScreen';
 import Modal from '@mui/material/Modal';
 import DialogContent from '@mui/material/DialogContent';
-import ModalContent from '../modal/ModalContent';
+import ModalWindow from '../modal';
 
 function ExpandButton({ description, url }) {
   const [open, setOpen] = useState(false);
@@ -19,8 +19,8 @@ function ExpandButton({ description, url }) {
         open={open}
         onClose={handleClose}
       >
-        <DialogContent>
-          <ModalContent description={description} url={url}/>
+        <DialogContent sx={{p: 0}}>
+          <ModalWindow description={description} url={url} close={handleClose}/>
         </DialogContent>
       </Modal>
     </div>
