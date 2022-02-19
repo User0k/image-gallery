@@ -3,7 +3,7 @@ import StyledModalWindow from './StyledModalWindow';
 import SmallModalImg from './SmallModalImg';
 import LargeModalImg from './LargeModalImg';
 
-function ModalWindow ({ description, url }) {
+function ModalWindow ({ image, close }) {
   const [enlarge, setEnlarge] = useState(false);
 
   return (
@@ -12,13 +12,13 @@ function ModalWindow ({ description, url }) {
         !enlarge ?
         <SmallModalImg
           onClick={() => setEnlarge(true)}
-          src={url.regular}
-          alt={description}
+          src={image.urls.regular}
+          alt={image.description}
         /> :
         <LargeModalImg
           onClick={() => setEnlarge(false)}
-          src={url.regular}
-          alt={description}
+          src={image.urls.regular}
+          alt={image.urls.description}
         />
       }
     </StyledModalWindow>
