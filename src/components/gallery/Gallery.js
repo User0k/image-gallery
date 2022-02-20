@@ -53,7 +53,7 @@ export default function Gallery({ images }) {
           />
           <TopItemBar className='topItemBar' direction="row">
             <LikeButton id={image.id}/>
-            <ExpandButton description={image.description} url={image.urls}/>
+            <ExpandButton image={image}/>
           </TopItemBar>
           <ImageBar image={image}/>
         </ImageListItem>

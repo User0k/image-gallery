@@ -5,7 +5,7 @@ import Modal from '@mui/material/Modal';
 import DialogContent from '@mui/material/DialogContent';
 import ModalWindow from '../modal';
 
-function ExpandButton({ description, url }) {
+function ExpandButton({ image }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -20,7 +20,7 @@ function ExpandButton({ description, url }) {
         onClose={handleClose}
       >
         <DialogContent sx={{p: 0}}>
-          <ModalWindow description={description} url={url} close={handleClose}/>
+          <ModalWindow image={image} close={handleClose}/>
         </DialogContent>
       </Modal>
     </div>
