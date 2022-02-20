@@ -1,14 +1,15 @@
-import { useState } from 'react';
+import { useState, forwardRef } from 'react';
 import StyledModalWindow from './StyledModalWindow';
 import SmallModalImg from './SmallModalImg';
 import LargeModalImg from './LargeModalImg';
 import DownloadButton from '../buttons/DownloadButton';
+import PublishedOn from './PublishedOn';
 
-function ModalWindow ({ image, close }) {
+const ModalWindow = forwardRef(({ image, close }, ref) => {
   const [enlarge, setEnlarge] = useState(false);
 
   return (
-    <StyledModalWindow>
+    <StyledModalWindow ref={ref}>
       <DownloadButton url={image.urls} id={image.id}/>
       {
         !enlarge ?
@@ -23,8 +24,9 @@ function ModalWindow ({ image, close }) {
           alt={image.urls.description}
         />
       }
+      <PublishedOn parsedDate={image.created_at}/>
     </StyledModalWindow>
   )
-}
+})
 
 export default ModalWindow;
