@@ -1,7 +1,13 @@
 import { useState, forwardRef } from 'react';
 import StyledModalWindow from './StyledModalWindow';
+import Stack from '@mui/material/Stack';
+import CardHeader from '@mui/material/CardHeader';
+import Typography from '@mui/material/Typography';
+import AuthorsAvatar from '../buttons/AuthorsAvatar';
 import SmallModalImg from './SmallModalImg';
 import LargeModalImg from './LargeModalImg';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 import DownloadButton from '../buttons/DownloadButton';
 import PublishedOn from './PublishedOn';
 
@@ -10,7 +16,20 @@ const ModalWindow = forwardRef(({ image, close }, ref) => {
 
   return (
     <StyledModalWindow ref={ref}>
-      <DownloadButton url={image.urls} id={image.id}/>
+      <Stack direction={'row'} justifyContent={'space-between'}>
+        <CardHeader
+          sx={{padding: '8px'}}
+          avatar={<AuthorsAvatar user={image.user}/>}
+          title={image.user.name}
+          subheader={<Typography variant='caption'>@{image.user.username}</Typography>}
+        />
+        <Stack direction={'row'} alignItems={'center'}>
+          <DownloadButton url={image.urls} id={image.id}/>
+          <IconButton sx={{alignSelf: 'start'}} size="large" onClick={close}>
+            <CloseIcon/>
+          </IconButton>
+        </Stack>
+      </Stack>
       {
         !enlarge ?
         <SmallModalImg
