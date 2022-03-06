@@ -8,8 +8,8 @@ import SmallModalImg from './SmallModalImg';
 import LargeModalImg from './LargeModalImg';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import DownloadButton from '../buttons/DownloadButton';
 import PublishedOn from './PublishedOn';
+import DownloadGroup from '../buttons/DownloadGroup';
 
 const ModalWindow = forwardRef(({ image, close }, ref) => {
   const [enlarge, setEnlarge] = useState(false);
@@ -24,7 +24,7 @@ const ModalWindow = forwardRef(({ image, close }, ref) => {
           subheader={<Typography variant='caption'>@{image.user.username}</Typography>}
         />
         <Stack direction={'row'} alignItems={'center'}>
-          <DownloadButton url={image.urls} id={image.id}/>
+          <DownloadGroup image={image}/>
           <IconButton sx={{alignSelf: 'start'}} size="large" onClick={close}>
             <CloseIcon/>
           </IconButton>
