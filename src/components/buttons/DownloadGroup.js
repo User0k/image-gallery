@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import download from '../../helpers/download';
+import dowloadOptions from '../../helpers/downloadOptions';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -9,43 +10,13 @@ import Paper from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
+import downloadOptions from '../../helpers/downloadOptions';
 
 function DownloadGroup({ image }) {
-  const originHeight = parseInt(image.height, 10);
-  const originWidth = parseInt(image.width, 10);
-
-  const OPTIONS = [
-    {
-      size: 'small',
-      width: 640,
-    },
-    {
-      size: 'medium',
-      width: 1080,
-    },
-    {
-      size: 'large',
-      width: 1920,
-    },
-    {
-      size: 'original',
-      width: originWidth,
-    },
-  ];
-
-  const calcHeight = width => parseInt(originHeight * width / originWidth);
-  const getDimensions = OPTIONS.reduce((dimension, option, index) => {
-    if (option.width <= originWidth) {
-      dimension.push(option);
-      dimension[index].height = calcHeight(option.width);
-    }
-
-    return dimension;
-  }, []);
-
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
-  const [selectedIndex, setSelectedIndex] = useState(getDimensions.length - 1);
+  const [selectedIndex, setSelectedIndex] = useState(downloadOptions(image).length - 1);
+  const [downloadSize, downloadWidth] = [dowloadOptions(image)[selectedIndex].size, dowloadOptions(image)[selectedIndex].width];
 
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
@@ -65,7 +36,9 @@ function DownloadGroup({ image }) {
   return (
     <>
       <ButtonGroup variant="contained" ref={anchorRef}>
-        <Button onClick={() => download(image.urls.full, image.id, getDimensions[selectedIndex].size, getDimensions[selectedIndex].width)}>Download {getDimensions[selectedIndex].size}</Button>
+        <Button onClick={() => download(image.urls.full, image.id,downloadSize, downloadWidth)}>
+          Download {downloadSize}
+        </Button>
         <Button
           size="small"
           onClick={handleToggle}
@@ -85,7 +58,7 @@ function DownloadGroup({ image }) {
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList id="split-button-menu">
-                  {getDimensions.map((dimension, index) => (
+                  {downloadOptions(image).map((dimension, index) => (
                     <MenuItem
                       key={dimension.size}
                       selected={index === selectedIndex}
