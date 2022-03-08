@@ -13,7 +13,7 @@ function ExpandButton({ image }) {
   return (
     <div className='expandButton'>
       <IconButton onClick={handleOpen}>
-        <FitScreenIcon sx={{ color: "lightgrey" }}/>
+        <FitScreenIcon sx={{ color: "lightgrey", fontSize: 24}}/>
       </IconButton>
       <Modal
         open={open}

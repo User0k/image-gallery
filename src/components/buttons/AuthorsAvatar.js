@@ -4,6 +4,7 @@ import Avatar from '@mui/material/Avatar';
 function AuthorsAvatar({ user }) {
   return (
     <IconButton
+      sx={{pl: {xs: 0, sm: '12px'}}}
       size="large"
       href={user.links.html}
       target="_blank"
