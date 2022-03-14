@@ -12,10 +12,15 @@ const PublishedOn = forwardRef(({ parsedDate }, ref) => {
   };
 
   return (
-    <Stack direction={'row'} spacing={1} color='#777777'>
+    <Stack
+      sx={{mb: 1}}
+      direction='row'
+      alignItems='center'
+      spacing={1} color='#777777'
+    >
       <ContentPasteIcon sx={{ fontSize: 16 }}/>
       <Typography ref={ref} variant='body2' gutterBottom component='div'>
-        Published on {date.toLocaleString("en-US", options)}
+        Published on {date.toLocaleString('en-US', options)}
       </Typography>
     </Stack>
   )

@@ -1,5 +1,8 @@
 import { useState, forwardRef } from 'react';
 import StyledModalWindow from './StyledModalWindow';
+import PublishedOn from './PublishedOn';
+import DownloadGroup from '../buttons/DownloadGroup';
+import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
@@ -8,8 +11,7 @@ import SmallModalImg from './SmallModalImg';
 import LargeModalImg from './LargeModalImg';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import PublishedOn from './PublishedOn';
-import DownloadGroup from '../buttons/DownloadGroup';
+import Chip from '@mui/material/Chip';
 
 const ModalWindow = forwardRef(({ image, close }, ref) => {
   const [enlarge, setEnlarge] = useState(false);
@@ -43,7 +45,17 @@ const ModalWindow = forwardRef(({ image, close }, ref) => {
           alt={image.urls.description}
         />
       }
-      <PublishedOn parsedDate={image.created_at}/>
+      <Box sx={{p: 2}}>
+        <PublishedOn sx={{justifySelf: 'center'}} parsedDate={image.created_at}/>
+        <Stack direction="row" spacing={1}>
+          <Typography variant='subtitle2' component='div' alignSelf={'center'} color='#777777'>
+            Related tags
+          </Typography>
+          {image.tags.map(tag => {
+            return <Chip key={tag.title} label={tag.title}/>
+          })}
+        </Stack>
+      </Box>
     </StyledModalWindow>
   )
 })
