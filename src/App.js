@@ -30,7 +30,6 @@ function App() {
         .then(res => {
           setImages([...images, ...res.data.results]);
           setPage(curPage => curPage + 1);
-          console.log(res.data);
         })
         .finally(() => setIsFetching(false));
     } else if (hitSubmit){
