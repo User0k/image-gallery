@@ -22,10 +22,11 @@ function downloadOptions(image) {
     },
   ];
 
-  return OPTIONS.reduce((dimension, option, index) => {
+  return OPTIONS.reduce((dimension, option) => {
     if (option.width <= originWidth) {
+      const i = dimension.length;
       dimension.push(option);
-      dimension[index].height = calcHeight(option.width);
+      dimension[i].height = calcHeight(option.width);
     }
 
     return dimension;
