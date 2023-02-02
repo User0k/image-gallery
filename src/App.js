@@ -10,7 +10,8 @@ function App() {
   const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [query, setQuery] = useState('fox');
+  const valueFromLS = localStorage.getItem('searchValue');
+  const [query, setQuery] = useState(valueFromLS || null);
   const [hitSubmit, setHitSubmit] = useState(false);
   const [isFetching, setIsFetching] = useState(true);
   const url = `https://api.unsplash.com/search/photos?page=${page}&query=${query}&client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}&per_page=10`;
@@ -52,7 +53,7 @@ function App() {
 
   return (
     <>
-      <SearchBar setQuery={setQuery} setPage={setPage} setHitSubmit={setHitSubmit}/>
+      <SearchBar setQuery={setQuery} setPage={setPage} setHitSubmit={setHitSubmit} query={query}/>
       <Container>
         <Gallery images={images}/>
         {images.length === 0 && !isFetching && <NothingFound />}

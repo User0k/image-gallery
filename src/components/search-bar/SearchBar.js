@@ -10,13 +10,15 @@ import Search from './Search';
 import SearchIconWrapper from './SearchIconWrapper';
 import StyledInputBase from './StyledInputBase';
 
-export default function SearchBar({ setQuery, setPage, setHitSubmit }) {
+export default function SearchBar({ setQuery, setPage, setHitSubmit, query }) {
   const input = useRef(null);
   function handleSubmit(e) {
     e.preventDefault();
     setQuery(input.current.children[0].value);
     setPage(1);
     setHitSubmit(true);
+    localStorage.setItem('searchValue', query);
+    input.current.children[0].value = '';
   }
 
   return (
