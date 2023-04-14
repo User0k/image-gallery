@@ -10,45 +10,33 @@ function App() {
   const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [query, setQuery] = useState('fox');
+  const valueFromLS = localStorage.getItem('searchValue');
+  const [query, setQuery] = useState(valueFromLS || null);
   const [hitSubmit, setHitSubmit] = useState(false);
   const [isFetching, setIsFetching] = useState(true);
   const url = `https://api.unsplash.com/search/photos?page=${page}&query=${query}&client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}&per_page=10`;
 
-  const getTotalPages = () => {
+  useEffect(() => {
     axios.get(url)
-      .then(res => {
-        setTotalPages(res.data.total_pages);
-      });
-  };
+    .then(res => {
+      setTotalPages(res.data.total_pages);
+    });
+  }, [url, hitSubmit]);
 
-  useEffect(() => getTotalPages(), [hitSubmit]);
-
-  const getData = () => {
+  useEffect(() => {
     if (isFetching && page <= totalPages) {
       axios.get(url)
         .then(res => {
           setImages([...images, ...res.data.results]);
           setPage(curPage => curPage + 1);
-          console.log(res.data);
         })
         .finally(() => setIsFetching(false));
     } else if (hitSubmit){
         setHitSubmit(false);
         axios.get(url)
           .then(res => setImages(res.data.results));
-    }
-  };
-
-  useEffect(() => getData(), [isFetching, hitSubmit]);
-
-  const handleInput = (e) => setQuery(e.target.value);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setPage(1);
-    setHitSubmit(true);
-  }
+    }}, [isFetching, hitSubmit, images, page, totalPages, url]
+  );
 
   function handleScroll(e) {
     const {scrollHeight, scrollTop, clientHeight} = e.target.scrollingElement;
@@ -65,7 +53,7 @@ function App() {
 
   return (
     <>
-      <SearchBar handleInput={handleInput} handleSubmit={handleSubmit}/>
+      <SearchBar setQuery={setQuery} setPage={setPage} setHitSubmit={setHitSubmit} query={query}/>
       <Container>
         <Gallery images={images}/>
         {images.length === 0 && !isFetching && <NothingFound />}

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useRef } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
@@ -10,7 +10,17 @@ import Search from './Search';
 import SearchIconWrapper from './SearchIconWrapper';
 import StyledInputBase from './StyledInputBase';
 
-export default function SearchBar({ handleInput, handleSubmit }) {
+export default function SearchBar({ setQuery, setPage, setHitSubmit, query }) {
+  const input = useRef(null);
+  function handleSubmit(e) {
+    e.preventDefault();
+    setQuery(input.current.children[0].value);
+    setPage(1);
+    setHitSubmit(true);
+    localStorage.setItem('searchValue', query);
+    input.current.children[0].value = '';
+  }
+
   return (
     <AppBar sx={{ backgroundColor: 'black' }}>
       <Toolbar>
@@ -23,7 +33,7 @@ export default function SearchBar({ handleInput, handleSubmit }) {
             <SearchIcon />
           </SearchIconWrapper>
           <StyledInputBase
-            onChange={handleInput}
+            ref={input}
             placeholder="Search images"
             inputProps={{ 'aria-label': 'search images' }}
           />
